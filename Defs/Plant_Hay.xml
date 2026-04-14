@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Hay Item Definition -->
+  <ThingDef>
+    <defName>Hay_Waste</defName>
+    <label>hay</label>
+    <description>Dried hay and plant waste collected as a byproduct from harvesting crops. Can be
+      used as filth or low-quality fuel. This is generated inversely to harvest success.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Hay</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <pathCost>14</pathCost>
+    <useHitPoints>false</useHitPoints>
+    <statBases>
+      <Mass>0.02</Mass>
+      <Flammability>1.0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <thingCategories>
+      <li>Waste</li>
+      <li>Organic</li>
+    </thingCategories>
+    <smallStackThreshold>200</smallStackThreshold>
+    <stackLimit>999</stackLimit>
+    <ingestible>
+      <foodType>Plant</foodType>
+      <nutrition>0.05</nutrition>
+      <joy>0</joy>
+      <maxNutritionPerDay>1</maxNutritionPerDay>
+      <preferability>Awful</preferability>
+    </ingestible>
+  </ThingDef>
+
+</Defs>
