@@ -1,0 +1,28 @@
+# Build artifacts
+Assemblies/*.dll
+bin/
+obj/
+packages/
+
+# Visual Studio
+.vs/
+*.csproj.user
+*.sln.user
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+*.DotSettings.user
+
+# Temporary files
+*.tmp
+*.log
