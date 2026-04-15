@@ -20,10 +20,8 @@
       <DeteriorationRate>0</DeteriorationRate>
     </statBases>
     <thingCategories>
-      <li>Waste</li>
-      <li>Organic</li>
+      <li>Raw</li>
     </thingCategories>
-    <smallStackThreshold>200</smallStackThreshold>
     <stackLimit>999</stackLimit>
     <ingestible>
       <foodType>Plant</foodType>

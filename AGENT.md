@@ -25,6 +25,6 @@ Debes implementar una lógica donde el output secundario (Hay/Heno) sea inversam
 
 ## Constraints
 
-- El código debe ser compatible con la versión 1.5.
+- El código debe ser compatible con la versión 1.6.
 - Evitar errores de "NullReferenceException" si la planta no es de tipo comestible.
 - Asegurar que el "Hay" quede en el suelo (basura) y no se auto-transporte a menos que haya un transporte o almacén asignado.

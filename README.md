@@ -14,7 +14,7 @@ La cantidad de heno generada es **inversamente proporcional** al rendimiento de 
 
 ### Características
 
-- ✅ Compatible con RimWorld 1.4 y 1.5
+- ✅ Compatible con RimWorld 1.4, 1.5 y 1.6
 - ✅ Utiliza Harmony para patches sin modificar archivos base
 - ✅ Manejo robusto de errores y NullReferenceExceptions
 - ✅ El Heno queda en el suelo (basura) hasta ser transportado o almacenado
