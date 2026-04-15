@@ -7,10 +7,6 @@
     <description>Nutrient-rich grasses and shoots harvested as a byproduct from crops.</description>
     <thingClass>Verse.Thing</thingClass>
     <category>Item</category>
-    <graphicData>
-      <texPath>Things/Item/Resource/WoodPlanks</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
-    </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <pathCost>15</pathCost>
     <statBases>
