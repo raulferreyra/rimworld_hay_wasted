@@ -8,6 +8,11 @@
     <RootNamespace>HayWasteMod</RootNamespace>
     <AssemblyName>HayWasteMod</AssemblyName>
     <LangVersion>latest</LangVersion>
+    
+    <!-- Auto-detect RimWorld installation path -->
+    <!-- Priority: Environment variable > MSBuild property > Steam default path -->
+    <RimWorldInstallPath Condition="'$(RimWorldInstallPath)' == ''">$([System.Environment]::GetEnvironmentVariable('RIMWORLD_INSTALL_PATH'))</RimWorldInstallPath>
+    <RimWorldInstallPath Condition="'$(RimWorldInstallPath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\RimWorld</RimWorldInstallPath>
   </PropertyGroup>
 
   <ItemGroup>
