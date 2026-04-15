@@ -5,8 +5,7 @@
   <ThingDef>
     <defName>Hay_Waste</defName>
     <label>hay</label>
-    <description>Dried hay and plant waste collected as a byproduct from harvesting crops. Can be
-      used as filth or low-quality fuel. This is generated inversely to harvest success.</description>
+    <description>Nutrient-rich grasses and shoots, harvested and compacted for storage. Hay is good animal feed, but inedible for humans. Generated as a byproduct from harvesting crops inversely to yield success.</description>
     <graphicData>
       <texPath>Things/Item/Resource/Hay</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -20,15 +19,13 @@
       <DeteriorationRate>0</DeteriorationRate>
     </statBases>
     <thingCategories>
-      <li>Raw</li>
+      <li>AnimalFeed</li>
     </thingCategories>
     <stackLimit>999</stackLimit>
     <ingestible>
       <foodType>Plant</foodType>
-      <nutrition>0.05</nutrition>
-      <joy>0</joy>
-      <maxNutritionPerDay>1</maxNutritionPerDay>
-      <preferability>Awful</preferability>
+      <nutrition>0.3</nutrition>
+      <preferability>RawBad</preferability>
     </ingestible>
   </ThingDef>
 
