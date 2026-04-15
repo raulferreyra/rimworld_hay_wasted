@@ -5,30 +5,25 @@
   <ThingDef>
     <defName>Hay_Waste</defName>
     <label>hay</label>
-    <description>Nutrient-rich grasses and shoots, harvested as a byproduct. Good animal feed but inedible for humans.</description>
+    <description>Nutrient-rich grasses and shoots, harvested as a byproduct from crops. Good animal feed but inedible for humans.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/RawPlant</texPath>
+      <texPath>Things/Item/Resource/Hay</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <pathCost>14</pathCost>
-    <useHitPoints>true</useHitPoints>
-    <maxHitPoints>60</maxHitPoints>
+    <stackLimit>999</stackLimit>
     <statBases>
-      <MaxHitPoints>60</MaxHitPoints>
       <Mass>0.02</Mass>
       <Flammability>0.6</Flammability>
-      <DeteriorationRate>1</DeteriorationRate>
     </statBases>
+    <ingestible>
+      <preferability>RawBad</preferability>
+      <foodType>Plant</foodType>
+    </ingestible>
     <thingCategories>
       <li>PlantMatter</li>
     </thingCategories>
-    <drawGUIOverlay>true</drawGUIOverlay>
-    <stackLimit>999</stackLimit>
-    <ingestible>
-      <foodType>Plant</foodType>
-      <preferability>RawBad</preferability>
-    </ingestible>
   </ThingDef>
 
 </Defs>
