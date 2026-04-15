@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Hay Item Definition -->
+  <!-- Hay Item Definition - Byproduct from Harvest -->
   <ThingDef>
     <defName>Hay_Waste</defName>
     <label>hay</label>
-    <description>Nutrient-rich grasses and shoots, harvested and compacted for storage. Hay is good animal feed, but inedible for humans. Generated as a byproduct from harvesting crops inversely to yield success.</description>
+    <description>Nutrient-rich grasses and shoots, harvested as a byproduct. Good animal feed but inedible for humans.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Hay</texPath>
+      <texPath>Things/Item/Resource/RawPlant</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <pathCost>14</pathCost>
-    <useHitPoints>false</useHitPoints>
+    <useHitPoints>true</useHitPoints>
+    <maxHitPoints>60</maxHitPoints>
     <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
       <Mass>0.02</Mass>
-      <Flammability>1.0</Flammability>
-      <DeteriorationRate>0</DeteriorationRate>
+      <Flammability>0.6</Flammability>
+      <DeteriorationRate>1</DeteriorationRate>
     </statBases>
     <thingCategories>
-      <li>AnimalFeed</li>
+      <li>PlantMatter</li>
     </thingCategories>
+    <drawGUIOverlay>true</drawGUIOverlay>
     <stackLimit>999</stackLimit>
     <ingestible>
       <foodType>Plant</foodType>
-      <nutrition>0.3</nutrition>
       <preferability>RawBad</preferability>
     </ingestible>
   </ThingDef>
