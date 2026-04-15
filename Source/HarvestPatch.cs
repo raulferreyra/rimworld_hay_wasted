@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Verse;
+using Verse.AI;
 using RimWorld;
 using HarmonyLib;
 
@@ -7,7 +10,7 @@ namespace HayWasteMod
 {
     /// <summary>
     /// Main Harmony Patch for the Hay Waste Mod.
-    /// Intercepts the plant harvest to generate hay as a byproduct inversely proportional to yield.
+    /// Intercepts plant harvest to generate hay as a byproduct inversely proportional to yield.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class HarvestPatch
@@ -20,36 +23,87 @@ namespace HayWasteMod
 
         /// <summary>
         /// Patches JobDriver_PlantHarvest.MakeNewToils() to add hay generation after harvest completes.
+        /// Uses a postfix to execute code after the original method.
         /// </summary>
         [HarmonyPatch(typeof(JobDriver_PlantHarvest), "MakeNewToils")]
         public static class PlantHarvestPatch
         {
             [HarmonyPostfix]
-            public static void Postfix(JobDriver_PlantHarvest __instance)
+            public static void Postfix(JobDriver_PlantHarvest __instance, ref IEnumerable<Toil> __result)
             {
                 try
                 {
-                    var plant = __instance.Plant;
-                    
-                    // Safety check: ensure plant exists and is valid
-                    if (plant == null || plant.Destroyed)
-                        return;
-
-                    // Get the yield amount (0-100 represented as 0-1)
-                    float yieldPct = plant.YieldPct();
-                    
-                    // Calculate hay amount using inverse ratio formula
-                    // Formula: CantidadHeno = Clamp(11 - UnidadesCosechadas, 1, 10)
-                    int harvestedAmount = Mathf.CeilToInt(yieldPct * 10f);
-                    int hayAmount = Mathf.Clamp(11 - harvestedAmount, 1, 10);
-
-                    // Spawn hay at plant location or nearby
-                    SpawnHayByproduct(plant, hayAmount);
+                    // Wrap the original toils to add hay generation at the end
+                    __result = WrapToilsWithHayGeneration(__instance, __result);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"[HayWasteMod] Error in plant harvest patch: {ex.Message}");
+                    Log.Error($"[HayWasteMod] Error in plant harvest patch: {ex.Message}\n{ex.StackTrace}");
                 }
+            }
+
+            /// <summary>
+            /// Wraps the toil sequence to add hay generation after the harvest job completes.
+            /// </summary>
+            private static IEnumerable<Toil> WrapToilsWithHayGeneration(JobDriver_PlantHarvest harvester, IEnumerable<Toil> baseToils)
+            {
+                Toil lastToil = null;
+                
+                // Iterate through toils and track the last one
+                foreach (Toil toil in baseToils)
+                {
+                    yield return toil;
+                    lastToil = toil;
+                }
+
+                // Add a final toil that generates hay after harvest completes
+                if (lastToil != null)
+                {
+                    Toil hayToil = new Toil();
+                    hayToil.initAction = () =>
+                    {
+                        TryGenerateHay(harvester);
+                    };
+                    hayToil.defaultCompleteMode = ToilCompleteMode.Instant;
+                    yield return hayToil;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Attempts to generate hay byproduct from harvesting.
+        /// </summary>
+        private static void TryGenerateHay(JobDriver_PlantHarvest harvester)
+        {
+            try
+            {
+                // Access the protected Plant property through reflection
+                var plantField = typeof(JobDriver_PlantWork).GetField("plant", 
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                
+                Plant plant = plantField?.GetValue(harvester) as Plant;
+                
+                // Safety checks
+                if (plant == null || plant.Destroyed || plant.Map == null)
+                    return;
+
+                // Only generate hay for harvestable plants
+                if (plant.def?.plant == null || plant.def.plant.harvestYield <= 0)
+                    return;
+
+                // Estimate yield based on plant growth (0 to 1)
+                float yieldEstimate = Mathf.Max(0f, Mathf.Min(1f, plant.Growth));
+                
+                // Calculate hay amount: inverse relationship to growth
+                // More growth = less hay waste, less growth = more hay waste
+                int hayAmount = Mathf.Clamp(Mathf.RoundToInt((1f - yieldEstimate) * 10f), 1, 10);
+
+                // Spawn the hay
+                SpawnHayByproduct(plant, hayAmount);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[HayWasteMod] Error generating hay: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
@@ -63,12 +117,12 @@ namespace HayWasteMod
 
             try
             {
-                // Get the hay thing def
+                // Get the hay thingdef
                 ThingDef hayDef = ThingDef.Named("Hay_Waste");
                 
                 if (hayDef == null)
                 {
-                    Log.Error("[HayWasteMod] Hay_Waste ThingDef not found!");
+                    Log.Error("[HayWasteMod] Hay_Waste ThingDef not found! Check if mod is loaded correctly.");
                     return;
                 }
 
@@ -81,12 +135,16 @@ namespace HayWasteMod
                 
                 if (resultHay != null)
                 {
-                    Log.Message($"[HayWasteMod] Generated {amount} hay from plant harvest at {plant.Position}");
+                    Log.Message($"[HayWasteMod] Generated {amount} hay from {plant.def.label} harvest at {plant.Position}");
+                }
+                else
+                {
+                    Log.Warning($"[HayWasteMod] Failed to spawn hay at {plant.Position}");
                 }
             }
             catch (Exception ex)
             {
-                Log.Error($"[HayWasteMod] Error spawning hay: {ex.Message}");
+                Log.Error($"[HayWasteMod] Error spawning hay: {ex.Message}\n{ex.StackTrace}");
             }
         }
     }

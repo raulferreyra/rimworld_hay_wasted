@@ -10,26 +10,28 @@
     <LangVersion>latest</LangVersion>
 
     <!-- Auto-detect RimWorld installation path -->
-    <!-- Priority: Environment variable > MSBuild property > Steam default path -->
+    <!-- Priority: Environment variable > Direct path calculation -->
     <RimWorldInstallPath Condition="'$(RimWorldInstallPath)' == ''">
       $([System.Environment]::GetEnvironmentVariable('RIMWORLD_INSTALL_PATH'))</RimWorldInstallPath>
-    <RimWorldInstallPath Condition="'$(RimWorldInstallPath)' == ''">C:\Program Files
-      (x86)\Steam\steamapps\common\RimWorld</RimWorldInstallPath>
+    <!-- If not set, calculate: Source/../../../ = RimWorld root -->
+    <RimWorldInstallPath Condition="'$(RimWorldInstallPath)' == ''">
+      $([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine($(MSBuildThisFileDirectory), '..\..\..'))))
+    </RimWorldInstallPath>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>$(RimWorldInstallPath)/RimWorldWin_Data/Managed/Assembly-CSharp.dll</HintPath>
+      <HintPath>F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(RimWorldInstallPath)/RimWorldWin_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HarmonyInstaller" Version="2.2.2" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
   </ItemGroup>
 
 </Project>

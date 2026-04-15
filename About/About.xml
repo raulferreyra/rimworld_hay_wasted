@@ -4,7 +4,7 @@
     <author>URAS</author>
     <url>https://urasweb.com</url>
     <packageId>URAS.HayWasteMod</packageId>
-    <modVersion>2.0</modVersion>
+    <modVersion>1.0</modVersion>
     <description>Implements harvest byproducts system. According to harvest yield efficiency, crops will generate Hay (biomass) as a secondary output using inverse ratio calculation.
 
 Cosecha Fallida (0% yield): 10 unidades de Hay
