@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Hay Item Definition - Byproduct from Harvest -->
   <ThingDef>
     <defName>Hay_Waste</defName>
     <label>hay</label>
-    <description>Nutrient-rich grasses and shoots, harvested as a byproduct from crops. Good animal feed but inedible for humans.</description>
+    <description>Nutrient-rich grasses and shoots harvested as a byproduct from crops.</description>
+    <thingClass>Verse.Thing</thingClass>
+    <category>Item</category>
     <graphicData>
-      <texPath>Things/Item/Food/RawVegetarian</texPath>
+      <texPath>Things/Item/Resource/WoodPlanks</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <pathCost>14</pathCost>
+    <pathCost>15</pathCost>
     <statBases>
-      <Mass>0.02</Mass>
+      <Mass>0.1</Mass>
     </statBases>
     <stackLimit>999</stackLimit>
     <drawGUIOverlay>true</drawGUIOverlay>
