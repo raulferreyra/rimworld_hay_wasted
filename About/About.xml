@@ -4,14 +4,15 @@
     <author>URAS</author>
     <url>https://urasweb.com</url>
     <packageId>URAS.HayWasteMod</packageId>
-    <modVersion>1.0</modVersion>
-    <description>Implements harvest byproducts system. According to harvest yield efficiency, crops
-        will generate Hay (biomass) as a secondary output using inverse ratio calculation.
+    <modVersion>2.0</modVersion>
+    <description>Implements harvest byproducts system. According to harvest yield efficiency, crops will generate Hay (biomass) as a secondary output using inverse ratio calculation.
 
-        Cosecha Fallida (0% yield): 10 unidades de Hay
-        Cosecha Perfecta (100% yield): 1 unidad de Hay
+Cosecha Fallida (0% yield): 10 unidades de Hay
+Cosecha Perfecta (100% yield): 1 unidad de Hay
 
-        Fórmula: CantidadHeno = Clamp(11 - UnidadesCosechadas, 1, 10)</description>
+Fórmula: CantidadHeno = Clamp(11 - UnidadesCosechadas, 1, 10)
+
+Compatible with RimWorld 1.4, 1.5, and 1.6</description>
 
     <supportedVersions>
         <li>1.4</li>

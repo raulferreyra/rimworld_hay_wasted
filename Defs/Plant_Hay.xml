@@ -7,23 +7,20 @@
     <label>hay</label>
     <description>Nutrient-rich grasses and shoots, harvested as a byproduct from crops. Good animal feed but inedible for humans.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Hay</texPath>
+      <texPath>Things/Item/Food/RawVegetarian</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <pathCost>14</pathCost>
-    <stackLimit>999</stackLimit>
     <statBases>
       <Mass>0.02</Mass>
-      <Flammability>0.6</Flammability>
     </statBases>
+    <stackLimit>999</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
     <ingestible>
-      <preferability>RawBad</preferability>
+      <preferability>NeverForNutrition</preferability>
       <foodType>Plant</foodType>
     </ingestible>
-    <thingCategories>
-      <li>PlantMatter</li>
-    </thingCategories>
   </ThingDef>
 
 </Defs>
