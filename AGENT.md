@@ -11,7 +11,7 @@ Eres un especialista en el sistema de `JobGiver` y `WorkGiver` de RimWorld. Tu e
 
 ## Logic Rules (Inverse Ratio Calculation)
 
-Debes implementar una lógica donde el output secundario (Hay/Heno) sea inversamente proporcional al éxito de la cosecha (Harvest Yield):
+Debes implementar una lógica donde el output secundario [(Hay/Heno)](https://www.youtube.com/watch?v=0ShDwSIbwzQ) sea inversamente proporcional al éxito de la cosecha (Harvest Yield):
 
 - **Cosecha Fallida (0% yield):** Generar 10 unidades de `Hay`.
 - **Cosecha Perfecta (100% yield):** Generar 1 unidad de `Hay`.
