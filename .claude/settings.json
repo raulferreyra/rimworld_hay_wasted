@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:rimworldwiki.com)",
+      "Read(//f/SteamLibrary/steamapps/common/RimWorld/Data/**)",
+      "Bash(xargs grep -l \"Hay\")",
+      "Bash(grep -A 60 \"defName>Hay<\" \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_RawPlant.xml\")",
+      "Read(//f/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/**)",
+      "Bash(grep -A 60 \"Haygrass\" \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Plants/Plants_Cultivated_Farm.xml\")",
+      "Read(//f/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Plants/**)",
+      "Bash(grep -B 2 -A 30 'Name=\"RoughPlantBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_RawPlant.xml\" | head -60)",
+      "Bash(grep -B 5 \"defName>Hay<\" \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_RawPlant.xml\" | head -20)",
+      "Bash(grep -B 2 -A 30 'Name=\"OrganicProductBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_RawPlant.xml\" | head -50)",
+      "Bash(grep -B 2 -A 20 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_RawPlant.xml\" | head -30)",
+      "Bash(grep -r 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/\" --include=\"*.xml\" -l)",
+      "Read(//f/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/**)",
+      "Bash(grep -A 20 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_Base.xml\" | head -25)"
+    ]
+  }
+}
