@@ -14,7 +14,13 @@
       "Bash(grep -B 2 -A 20 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_RawPlant.xml\" | head -30)",
       "Bash(grep -r 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/\" --include=\"*.xml\" -l)",
       "Read(//f/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/**)",
-      "Bash(grep -A 20 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_Base.xml\" | head -25)"
+      "Bash(grep -A 20 'Name=\"ResourceBase\"' \"F:/SteamLibrary/steamapps/common/RimWorld/Data/Core/Defs/ThingDefs_Items/Items_Resource_Base.xml\" | head -25)",
+      "Read(//f/SteamLibrary/steamapps/common/RimWorld/**)",
+      "Bash(grep -r \"PlantCollected\\\\|MakeNewToils\\\\|PlantHarvest\" \"RimWorldWin64_Data/Managed/Assembly-CSharp.dll\")",
+      "Bash(find \"F:/SteamLibrary/steamapps/common/RimWorld\" -name \"*.cs\" 2>/dev/null | head -5)",
+      "Read(//f/SteamLibrary/steamapps/common/RimWorld/Mods/**)",
+      "Bash(xargs grep -l \"PlantCollected\\\\|JobDriver_PlantHarvest\\\\|PlantWork\")",
+      "Bash(powershell -command ' *)"
     ]
   }
 }
