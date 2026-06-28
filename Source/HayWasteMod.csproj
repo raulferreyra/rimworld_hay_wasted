@@ -31,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <!-- ExcludeAssets=runtime: compile against Harmony but don't copy 0Harmony.dll to Assemblies.
+         RimWorld 1.5+ bundles Harmony 2.x internally; shipping our own copy causes version conflicts. -->
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" ExcludeAssets="runtime" />
   </ItemGroup>
 
 </Project>
